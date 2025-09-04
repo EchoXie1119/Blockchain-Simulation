@@ -1,0 +1,23 @@
+
+============================================================
+Running BCH simulation
+Workload: NONE
+============================================================
+[DEBUG] DIFFICULTY: 3000000, HASHRATE: 5000
+[1751072285] Sum B:150/52560 0.3% abt:1657.99s tps:0.00 infl:0.00% ETA:86895170s Diff:3000000.0M H:b1a27955 Tx:0 C:1875 Pool:0 NMB:7.95 IO:8142
+[1751072289] Sum B:470/52560 0.9% abt:1675.63s tps:0.00 infl:0.00% ETA:87283374s Diff:3000000.0M H:af6a86f8 Tx:0 C:5875 Pool:0 NMB:26.88 IO:27523
+[******] End B:681/52560 1.3% abt:1818.40s tps:0.00 infl:0.00% Diff:3000000.0M H:6a8fdcb9 Tx:0 C:8512 Pool:0 NMB:40.22 IO:41184
+
+BCH Results:
+Simulation time: 6.69 seconds
+Total coins created: 8512.50
+Blocks mined: 681
+
+================================================================================
+SIMULATION RESULTS SUMMARY
+================================================================================
+Chain    Workload Time(s)    Coins           Blocks  
+--------------------------------------------------------------------------------
+BCH      NONE     6.69       8512.50         681     
+
+Results exported to results/bch_none.json

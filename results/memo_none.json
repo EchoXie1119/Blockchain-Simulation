@@ -1,0 +1,153 @@
+[
+  {
+    "chain": "MEMO",
+    "workload": "NONE",
+    "simulation_time": 1430.2389559745789,
+    "total_coins": 7022034.4288751995,
+    "blocks_mined": 135450,
+    "stats": {
+      "config": {
+        "nodes": 10,
+        "neighbors": 3,
+        "miners": 5,
+        "hashrate": 1000,
+        "blocktime": 3.27,
+        "difficulty": 10.0,
+        "reward": 51.8457072,
+        "halving": 9644000,
+        "wallets": 0,
+        "transactions": 0,
+        "interval": 1.0,
+        "blocksize": 32000,
+        "blocks": 9644036,
+        "years": 1.0,
+        "print_interval": 10,
+        "debug": false
+      },
+      "simulation_stats": {
+        "start_time": 1751081037.341249,
+        "end_time": 1751082467.542895,
+        "duration": 1430.2016460895538,
+        "total_blocks": 135441,
+        "total_transactions": 0,
+        "total_coins": 7022034.4288751995,
+        "transactions_per_second": 0.0,
+        "blocks_per_second": 94.70063215933342,
+        "network_stats": {
+          "total_blocks_propagated": 8118953,
+          "total_transactions_propagated": 0,
+          "total_network_data": 8313807872,
+          "total_io_requests": 8118953,
+          "average_propagation_time": 0.05051595495738748,
+          "network_latency": 0.0,
+          "packet_loss_rate": 0.0
+        },
+        "mining_stats": {
+          "total_blocks_mined": 135456,
+          "total_mining_time": 416735.44566118304,
+          "average_mining_time": 3.076537367567203,
+          "current_difficulty": 5439.163240825223,
+          "total_hashrate": 0.0,
+          "blocks_per_miner": {
+            "miner_0": 27145,
+            "miner_4": 27152,
+            "miner_3": 26977,
+            "miner_2": 27043,
+            "miner_1": 27139
+          }
+        }
+      },
+      "network_stats": {
+        "node_count": 10,
+        "total_connections": 30,
+        "total_blocks_stored": 1354518,
+        "total_pending_transactions": 0,
+        "average_neighbors": 3.0,
+        "network_stats": {
+          "total_blocks_propagated": 8118953,
+          "total_transactions_propagated": 0,
+          "total_network_data": 8313807872,
+          "total_io_requests": 8118953,
+          "average_propagation_time": 0.05051595495738748,
+          "network_latency": 0.0,
+          "packet_loss_rate": 0.0
+        }
+      },
+      "mining_stats": {
+        "total_miners": 5,
+        "total_hashrate": 5123.021901634213,
+        "current_difficulty": 5439.163240825223,
+        "block_reward": 51.8457072,
+        "total_blocks": 135456,
+        "average_mining_time": 3.0765373675672456,
+        "pending_transactions": 0,
+        "miners": [
+          {
+            "miner_id": "miner_0",
+            "hashrate": 1000,
+            "actual_hashrate": 948.5276042890368,
+            "blocks_mined": 27145,
+            "total_mining_time": 84151.0733472086,
+            "efficiency": 1161.2686102861403,
+            "running": false
+          },
+          {
+            "miner_id": "miner_1",
+            "hashrate": 1000,
+            "actual_hashrate": 1072.008957893431,
+            "blocks_mined": 27139,
+            "total_mining_time": 83552.67899719517,
+            "efficiency": 1169.3269584243944,
+            "running": false
+          },
+          {
+            "miner_id": "miner_2",
+            "hashrate": 1000,
+            "actual_hashrate": 1074.7957396494899,
+            "blocks_mined": 27043,
+            "total_mining_time": 82772.26910002923,
+            "efficiency": 1176.1765269760574,
+            "running": false
+          },
+          {
+            "miner_id": "miner_3",
+            "hashrate": 1000,
+            "actual_hashrate": 1011.7400582450042,
+            "blocks_mined": 26977,
+            "total_mining_time": 82391.57339130173,
+            "efficiency": 1178.7273382772041,
+            "running": false
+          },
+          {
+            "miner_id": "miner_4",
+            "hashrate": 1000,
+            "actual_hashrate": 1015.9495415572502,
+            "blocks_mined": 27152,
+            "total_mining_time": 83867.85082545405,
+            "efficiency": 1165.4906980200515,
+            "running": false
+          }
+        ],
+        "mining_stats": {
+          "total_blocks_mined": 135456,
+          "total_mining_time": 416735.44566118304,
+          "average_mining_time": 3.076537367567203,
+          "current_difficulty": 5439.163240825223,
+          "total_hashrate": 0.0,
+          "blocks_per_miner": {
+            "miner_0": 27145,
+            "miner_4": 27152,
+            "miner_3": 26977,
+            "miner_2": 27043,
+            "miner_1": 27139
+          }
+        }
+      },
+      "wallet_stats": {
+        "total_wallets": 0,
+        "total_balance": 0,
+        "wallets": {}
+      }
+    }
+  }
+]

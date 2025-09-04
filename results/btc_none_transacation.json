@@ -1,0 +1,125 @@
+{
+  "config": {
+    "nodes": 2,
+    "neighbors": 1,
+    "miners": 2,
+    "hashrate": 1000000.0,
+    "blocktime": 600.0,
+    "difficulty": 1200000000.0,
+    "reward": 50.0,
+    "halving": 210000,
+    "wallets": 2,
+    "transactions": 0,
+    "interval": 10.0,
+    "blocksize": 4096,
+    "blocks": 525600,
+    "years": 10.0,
+    "print_interval": 1440,
+    "debug": false
+  },
+  "stats": {
+    "start_time": 1753052865.065567,
+    "end_time": 1753067481.087532,
+    "duration": 14616.021965026855,
+    "total_blocks": 501606,
+    "total_transactions": 50160150,
+    "total_coins": 16770075.0,
+    "transactions_per_second": 3431.8606061227165,
+    "blocks_per_second": 34.318913942537876,
+    "network_stats": {
+      "total_blocks_propagated": 501607,
+      "total_transactions_propagated": 0,
+      "total_network_data": 13354669568,
+      "total_io_requests": 501607,
+      "average_propagation_time": 0.09999999999913894,
+      "network_latency": 0.0,
+      "packet_loss_rate": 0.0
+    },
+    "mining_stats": {
+      "total_blocks_mined": 501607,
+      "total_mining_time": 300943192.2416425,
+      "average_mining_time": 599.9581190885344,
+      "current_difficulty": 1219965219.4693925,
+      "total_hashrate": 0.0,
+      "blocks_per_miner": {
+        "miner_0": 250694,
+        "miner_1": 250913
+      }
+    }
+  },
+  "network_stats": {
+    "node_count": 2,
+    "total_connections": 1003214,
+    "total_blocks_stored": 501607,
+    "total_pending_transactions": 0,
+    "average_neighbors": 0.5,
+    "network_stats": {
+      "total_blocks_propagated": 501607,
+      "total_transactions_propagated": 0,
+      "total_network_data": 13354669568,
+      "total_io_requests": 501607,
+      "average_propagation_time": 0.09999999999913894,
+      "network_latency": 0.0,
+      "packet_loss_rate": 0.0
+    },
+    "node_stats": [
+      {
+        "node_id": "node_0",
+        "latency": 0.039938582634099,
+        "bandwidth": 86719108.12695427,
+        "packet_loss_rate": 0.0011163433910793042,
+        "neighbor_count": 1,
+        "stored_block_count": 250432,
+        "pending_transaction_count": 0
+      },
+      {
+        "node_id": "node_1",
+        "latency": 0.058602382707829775,
+        "bandwidth": 115325268.52632864,
+        "packet_loss_rate": 0.001424879960120905,
+        "neighbor_count": 1,
+        "stored_block_count": 251175,
+        "pending_transaction_count": 0
+      }
+    ]
+  },
+  "wallet_stats": {
+    "total_wallets": 2,
+    "total_balance": 10.214725894978208,
+    "network_conditions": {
+      "congestion": 0.0,
+      "block_utilization": 0.0244140625
+    },
+    "fee_statistics": {
+      "min_fee": 0.001,
+      "max_fee": 0.1,
+      "base_fee_rate": 0.01
+    },
+    "wallets": {
+      "wallet_0": {
+        "wallet_id": "wallet_0",
+        "balance": 10.214725894978208,
+        "transactions_sent": 0,
+        "transactions_received": 0,
+        "total_sent": 0.0,
+        "total_received": 0.0,
+        "total_fees": 0.0
+      },
+      "wallet_1": {
+        "wallet_id": "wallet_1",
+        "balance": 0.0,
+        "transactions_sent": 0,
+        "transactions_received": 0,
+        "total_sent": 0.0,
+        "total_received": 0.0,
+        "total_fees": 0.0
+      }
+    }
+  },
+  "fee_stats": {
+    "total_fees": 0.0,
+    "average_fee": 0.0,
+    "fee_distribution": {}
+  },
+  "trace_stats": null
+}

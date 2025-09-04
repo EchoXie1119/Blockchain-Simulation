@@ -1,0 +1,244 @@
+[
+  {
+    "chain": "DOGE",
+    "workload": "SMALL",
+    "simulation_time": 3283.6486988067627,
+    "total_coins": 2508240000,
+    "blocks_mined": 250824,
+    "stats": {
+      "config": {
+        "nodes": 10,
+        "neighbors": 3,
+        "miners": 5,
+        "hashrate": 1000,
+        "blocktime": 60,
+        "difficulty": 100.0,
+        "reward": 10000,
+        "halving": null,
+        "wallets": 10,
+        "transactions": 10,
+        "interval": 10.0,
+        "blocksize": 4000,
+        "blocks": 525600,
+        "years": 1.0,
+        "print_interval": 10,
+        "debug": false
+      },
+      "simulation_stats": {
+        "start_time": 1751079974.556802,
+        "end_time": 1751083258.1479151,
+        "duration": 3283.591113090515,
+        "total_blocks": 250824,
+        "total_transactions": 0,
+        "total_coins": 2508240000,
+        "transactions_per_second": 0.0,
+        "blocks_per_second": 76.38709917323553,
+        "network_stats": {
+          "total_blocks_propagated": 15035056,
+          "total_transactions_propagated": 0,
+          "total_network_data": 15395897344,
+          "total_io_requests": 15035056,
+          "average_propagation_time": 0.05051672965729292,
+          "network_latency": 0.0,
+          "packet_loss_rate": 0.0
+        },
+        "mining_stats": {
+          "total_blocks_mined": 250833,
+          "total_mining_time": 14480908.480778001,
+          "average_mining_time": 57.731273320408405,
+          "current_difficulty": 109007.8598899765,
+          "total_hashrate": 0.0,
+          "blocks_per_miner": {
+            "miner_0": 50187,
+            "miner_2": 50176,
+            "miner_4": 50110,
+            "miner_1": 50067,
+            "miner_3": 50293
+          }
+        }
+      },
+      "network_stats": {
+        "node_count": 10,
+        "total_connections": 30,
+        "total_blocks_stored": 2508297,
+        "total_pending_transactions": 0,
+        "average_neighbors": 3.0,
+        "network_stats": {
+          "total_blocks_propagated": 15035056,
+          "total_transactions_propagated": 0,
+          "total_network_data": 15395897344,
+          "total_io_requests": 15035056,
+          "average_propagation_time": 0.05051672965729292,
+          "network_latency": 0.0,
+          "packet_loss_rate": 0.0
+        }
+      },
+      "mining_stats": {
+        "total_miners": 5,
+        "total_hashrate": 5022.001548253813,
+        "current_difficulty": 109007.8598899765,
+        "block_reward": 10000,
+        "total_blocks": 250833,
+        "average_mining_time": 57.73127332040845,
+        "pending_transactions": 0,
+        "miners": [
+          {
+            "miner_id": "miner_0",
+            "hashrate": 1000,
+            "actual_hashrate": 1040.611070124067,
+            "blocks_mined": 50187,
+            "total_mining_time": 2895505.4271917483,
+            "efficiency": 62.39781086344872,
+            "running": false
+          },
+          {
+            "miner_id": "miner_1",
+            "hashrate": 1000,
+            "actual_hashrate": 991.3779150175617,
+            "blocks_mined": 50067,
+            "total_mining_time": 2883645.5916576767,
+            "efficiency": 62.50462973724435,
+            "running": false
+          },
+          {
+            "miner_id": "miner_2",
+            "hashrate": 1000,
+            "actual_hashrate": 973.7116082162883,
+            "blocks_mined": 50176,
+            "total_mining_time": 2904362.2784343148,
+            "efficiency": 62.19389410930377,
+            "running": false
+          },
+          {
+            "miner_id": "miner_3",
+            "hashrate": 1000,
+            "actual_hashrate": 1071.7200650963116,
+            "blocks_mined": 50293,
+            "total_mining_time": 2908083.449953356,
+            "efficiency": 62.25914871971918,
+            "running": false
+          },
+          {
+            "miner_id": "miner_4",
+            "hashrate": 1000,
+            "actual_hashrate": 944.5808897995843,
+            "blocks_mined": 50110,
+            "total_mining_time": 2889311.733540916,
+            "efficiency": 62.43563057106361,
+            "running": false
+          }
+        ],
+        "mining_stats": {
+          "total_blocks_mined": 250833,
+          "total_mining_time": 14480908.480778001,
+          "average_mining_time": 57.731273320408405,
+          "current_difficulty": 109007.8598899765,
+          "total_hashrate": 0.0,
+          "blocks_per_miner": {
+            "miner_0": 50187,
+            "miner_2": 50176,
+            "miner_4": 50110,
+            "miner_1": 50067,
+            "miner_3": 50293
+          }
+        }
+      },
+      "wallet_stats": {
+        "total_wallets": 10,
+        "total_balance": 0.0,
+        "wallets": {
+          "wallet_0": {
+            "wallet_id": "wallet_0",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_1": {
+            "wallet_id": "wallet_1",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_2": {
+            "wallet_id": "wallet_2",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_3": {
+            "wallet_id": "wallet_3",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_4": {
+            "wallet_id": "wallet_4",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_5": {
+            "wallet_id": "wallet_5",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_6": {
+            "wallet_id": "wallet_6",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_7": {
+            "wallet_id": "wallet_7",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_8": {
+            "wallet_id": "wallet_8",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          },
+          "wallet_9": {
+            "wallet_id": "wallet_9",
+            "balance": 0.0,
+            "transactions_sent": 0,
+            "transactions_received": 0,
+            "total_sent": 0.0,
+            "total_received": 0.0,
+            "total_fees": 0.0
+          }
+        }
+      }
+    }
+  }
+]

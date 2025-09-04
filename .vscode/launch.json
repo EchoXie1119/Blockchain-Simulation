@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Blockchain Simulator",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/sim-blockchain.py",
+            "args": [
+                "--miners", "1",
+                "--hashrate", "1e6",
+                "--nodes", "2",
+                "--neighbors", "1",
+                "--blocktime", "10",
+                "--blocksize", "4",
+                "--wallets", "10",
+                "--transactions", "10",
+                "--interval", "1.0",
+                "--print", "1",
+                "--reward", "50",
+                "--halving", "210000",
+                "--years", "1"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "stopOnEntry": false
+        }
+    ]
+} 

@@ -1,0 +1,331 @@
+@startuml Blockchain Simulation Class Diagram
+' CS595 Summer 2025 - PROJECT#2
+' Comprehensive blockchain simulation system with modular architecture
+' Supports BTC, BCH, LTC, DOGE, and MEMO blockchains
+' Implements all required features: mining, networking, transactions, wallets
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam classBackgroundColor #F0F8FF
+skinparam classBorderColor #4682B4
+skinparam packageBackgroundColor #E6F3FF
+skinparam packageBorderColor #4682B4
+
+package "Configuration & CLI" {
+    ' Central configuration management for all simulation parameters
+    ' Supports command-line arguments as specified in project requirements
+    class SimulationConfig {
+        ' Network configuration
+        +nodes: int                    ' Number of peer nodes (--nodes N)
+        +neighbors: int                ' Neighbors per node (--neighbors M)
+        
+        ' Mining configuration  
+        +miners: int                   ' Number of miners (--miners K)
+        +hashrate: float               ' Hashrate per miner (--hashrate H)
+        +blocktime: float              ' Target block time (--blocktime T)
+        +difficulty: float             ' Mining difficulty (--difficulty D)
+        +reward: float                 ' Block reward (--reward R)
+        +halving: int                  ' Halving interval (--halving H)
+        
+        ' Transaction configuration
+        +wallets: int                  ' Number of wallets (--wallets W)
+        +transactions: int             ' Transactions per wallet (--transactions X)
+        +interval: float               ' Generation interval (--interval I)
+        +blocksize: int                ' Max transactions per block (--blocksize B)
+        
+        ' Simulation control
+        +blocks: int                   ' Target blocks (--blocks L)
+        +print_interval: int           ' Print frequency (--print P)
+        +debug: bool                   ' Debug mode (--debug)
+        
+        ' Factory methods
+        +from_args(args): SimulationConfig
+        +to_dict(): Dict
+    }
+}
+
+package "Data Models & Core Structures" {
+    ' Block structure as specified in requirements
+    ' Header (1024 bytes) + (# transactions × 256 bytes)
+    class Block {
+        +block_id: str                 ' Unique block identifier
+        +timestamp: float              ' Block creation timestamp
+        +time_since_last: float        ' Time since last block
+        +transaction_count: int        ' Number of transactions in block
+        +size: int                     ' Block size in bytes
+        +transactions: List[str]       ' Transaction IDs in block
+        +miner_reward: float           ' Mining reward for this block
+        +previous_hash: str            ' Hash of previous block
+        +miner_id: str                 ' ID of miner who created block
+        +difficulty: float             ' Mining difficulty at creation
+        +hash: str                     ' Block hash
+        +transaction_objects: List[Transaction]  ' Actual transaction objects
+        
+        +calculate_hash(): str         ' Calculate block hash
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+    
+    ' Transaction model with fee support
+    class Transaction {
+        +tx_id: str                    ' Unique transaction ID
+        +sender: str                   ' Sender wallet ID
+        +recipient: str                ' Recipient wallet ID
+        +amount: float                 ' Transaction amount
+        +fee: float                    ' Transaction fee
+        +timestamp: float              ' Creation timestamp
+        +status: str                   ' Transaction status
+        +priority: str                 ' Transaction priority
+        +network_congestion: float     ' Network conditions
+        +hash: str                     ' Transaction hash
+        
+        +calculate_hash(): str         ' Calculate transaction hash
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+    
+    ' Wallet with balance tracking and fee logic
+    class Wallet {
+        +wallet_id: str                ' Unique wallet identifier
+        +balance: float                ' Current balance
+        +transactions_sent: int        ' Number of sent transactions
+        +transactions_received: int    ' Number of received transactions
+        +total_sent: float             ' Total amount sent
+        +total_received: float         ' Total amount received
+        +total_fees: float             ' Total fees paid
+        
+        +add_balance(amount: float)    ' Add to balance
+        +subtract_balance(amount: float, fee: float): bool  ' Subtract from balance
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+    
+    ' Comprehensive statistics tracking
+    class SimulationStats {
+        +start_time: float             ' Simulation start time
+        +end_time: float               ' Simulation end time
+        +total_blocks: int             ' Total blocks mined
+        +total_transactions: int       ' Total transactions processed
+        +total_coins: float            ' Total coins created
+        +network_stats: NetworkStats   ' Network performance stats
+        +mining_stats: MiningStats     ' Mining performance stats
+        
+        +finish()                      ' Mark simulation as finished
+        +get_duration(): float         ' Get simulation duration
+        +get_transactions_per_second(): float  ' Calculate TPS
+        +get_blocks_per_second(): float        ' Calculate BPS
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+    
+    ' Network performance metrics
+    class NetworkStats {
+        +total_blocks_propagated: int  ' Blocks propagated through network
+        +total_transactions_propagated: int  ' Transactions propagated
+        +total_network_data: int       ' Total network data transferred
+        +total_io_requests: int        ' Total I/O requests (io_requests counter)
+        +average_propagation_time: float  ' Average block propagation time
+        +network_latency: float        ' Simulated network latency
+        +packet_loss_rate: float       ' Simulated packet loss rate
+        +total_connections: int        ' Total network connections
+        
+        +update_propagation_stats(block_size: int, propagation_time: float)
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+    
+    ' Mining performance metrics
+    class MiningStats {
+        +total_miners: int             ' Number of active miners
+        +total_hashrate: float         ' Total network hashrate
+        +current_difficulty: float     ' Current mining difficulty
+        +average_mining_time: float    ' Average time to mine block
+        +blocks_per_miner: Dict        ' Blocks mined per miner
+        +difficulty_adjustments: int   ' Number of difficulty adjustments
+        
+        +update_mining_stats(block: Block, mining_time: float)
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+}
+
+package "Network Layer" {
+    ' Network simulation with latency and bandwidth
+    ' Implements block propagation as specified in requirements
+    class BlockchainNode {
+        +node_id: str                  ' Unique node identifier
+        +stored_blocks: Set[str]       ' Set of stored block IDs
+        +neighbors: List[str]          ' Connected neighbor nodes
+        +network_manager: NetworkManager  ' Reference to network manager
+        
+        +store_block(block: Block)     ' Store new block
+        +broadcast_block(block: Block) ' Broadcast to neighbors
+        +receive_block(block: Block)   ' Receive block from neighbor
+        +is_block_known(block_id: str): bool  ' Check if block already known
+        +get_neighbors(): List[str]    ' Get connected neighbors
+    }
+    
+    ' Network management and propagation
+    class NetworkManager {
+        +nodes: Dict[str, BlockchainNode]  ' All network nodes
+        +total_network_data: int       ' Total network data transferred
+        +total_io_requests: int        ' Global io_requests counter
+        +network_latency: float        ' Simulated network latency
+        +bandwidth_limit: float        ' Network bandwidth limit
+        +packet_loss_rate: float       ' Packet loss simulation
+        
+        +create_network(node_count: int, neighbor_count: int)  ' Create network topology
+        +propagate_block(block: Block, source_node: str)      ' Propagate block through network
+        +simulate_network_conditions() ' Update network conditions
+        +get_network_stats(): NetworkStats  ' Get network statistics
+        +add_node(node: BlockchainNode) ' Add node to network
+        +remove_node(node_id: str)     ' Remove node from network
+    }
+}
+
+package "Mining Layer" {
+    ' Mining simulation with difficulty adjustment
+    ' Implements exponential mining time as specified
+    class Miner {
+        +miner_id: str                 ' Unique miner identifier
+        +hashrate: float               ' Miner hashrate
+        +actual_hashrate: float        ' Actual hashrate with variance
+        +blocks_mined: int             ' Number of blocks mined
+        +total_mining_time: float      ' Total time spent mining
+        +running: bool                 ' Whether miner is active
+        
+        +mine_block(mining_manager): Block  ' Mine a single block
+        +calculate_expected_mining_time(mining_manager): float  ' Calculate mining time
+        +create_block(mining_manager, current_time, mining_time): Block  ' Create block
+        +update_stats(mining_time: float)   ' Update miner statistics
+        +get_efficiency(): float       ' Get mining efficiency
+        +to_dict(): Dict              ' Serialize to dictionary
+    }
+    
+    ' Mining management and difficulty adjustment
+    class MiningManager {
+        +miners: List[Miner]           ' List of active miners
+        +blocks: List[Block]           ' Chain of mined blocks
+        +transaction_pool: List[Transaction]  ' Unconfirmed transaction pool
+        +current_difficulty: float     ' Current mining difficulty
+        +block_reward: float           ' Current block reward
+        +halving_interval: int         ' Blocks until next halving
+        +simulated_time: float         ' Current simulation time
+        +last_block_time: float        ' Timestamp of last block
+        +last_block_hash: str          ' Hash of last block
+        +lock: threading.Lock          ' Thread safety lock
+        
+        +mine_next_block(): Block      ' Mine next block (probabilistic)
+        +submit_block(block: Block, miner_id: str): bool  ' Submit mined block
+        +adjust_difficulty()           ' Adjust difficulty every 2016 blocks
+        +halve_reward()                ' Halve reward at halving intervals
+        +get_transactions_for_block(): List[Transaction]  ' Get transactions for block
+        +add_transaction(transaction: Transaction)  ' Add to transaction pool
+        +get_pending_transaction_count(): int  ' Get pool size
+        +get_simulation_time(): float  ' Get current simulation time
+        +advance_simulation_time(elapsed: float)  ' Advance simulation time
+        +get_total_hashrate(): float   ' Get total network hashrate
+        +get_current_difficulty(): float  ' Get current difficulty
+        +get_block_reward(): float     ' Get current block reward
+        +get_block_count(): int        ' Get total blocks mined
+        +get_mining_stats(): Dict      ' Get mining statistics
+    }
+}
+
+package "Wallet & Transaction Layer" {
+    ' Wallet management and transaction generation
+    ' Implements transaction generation as specified in requirements
+    class WalletManager {
+        +wallets: Dict[str, Wallet]    ' All wallets in simulation
+        +transaction_generators: List[threading.Thread]  ' Transaction generator threads
+        +running: bool                 ' Whether generation is active
+        +transaction_callback: Callable ' Callback for new transactions
+        +fee_calculator: FeeCalculator ' Dynamic fee calculation
+        +transaction_history: deque     ' Transaction history tracking
+        +network_congestion: float     ' Current network congestion
+        +block_utilization: float      ' Current block utilization
+        
+        +start_transaction_generation(callback)  ' Start generating transactions
+        +stop_transaction_generation() ' Stop generating transactions
+        +create_transaction(sender_id: str): Transaction  ' Create new transaction
+        +add_mining_reward(miner_id: str, amount: float)  ' Add mining reward
+        +process_confirmed_transaction(transaction: Transaction)  ' Process confirmed transaction
+        +update_network_conditions(congestion: float, utilization: float)  ' Update network conditions
+        +get_wallet_balance(wallet_id: str): float  ' Get wallet balance
+        +get_total_balance(): float    ' Get total balance across all wallets
+        +get_wallet_stats(wallet_id: str): Dict  ' Get wallet statistics
+        +get_all_wallet_stats(): Dict  ' Get all wallet statistics
+        +get_richest_wallets(count: int): List[Dict]  ' Get richest wallets
+        +get_transaction_history(wallet_id: str, limit: int): List[Dict]  ' Get transaction history
+        +get_fee_statistics(): Dict    ' Get fee statistics
+    }
+    
+    ' Dynamic fee calculation based on network conditions
+    class FeeCalculator {
+        +base_fee_rate: float          ' Base transaction fee rate
+        +min_fee: float                ' Minimum transaction fee
+        +max_fee: float                ' Maximum transaction fee
+        +congestion_multiplier: float  ' Network congestion multiplier
+        +block_utilization: float      ' Block utilization factor
+        
+        +calculate_fee(amount: float, priority: str, congestion: float): float  ' Calculate transaction fee
+        +update_network_conditions(congestion: float, utilization: float)  ' Update network conditions
+        +get_fee_estimate(amount: float, priority: str): Dict  ' Get fee estimates
+    }
+}
+
+package "Simulation Orchestrator" {
+    ' Main simulation coordinator
+    ' Implements all required features and termination logic
+    class BlockchainSimulator {
+        +config: SimulationConfig      ' Simulation configuration
+        +network_manager: NetworkManager  ' Network management
+        +mining_manager: MiningManager ' Mining management
+        +wallet_manager: WalletManager ' Wallet management
+        +stats: SimulationStats        ' Simulation statistics
+        +running: bool                 ' Whether simulation is running
+        +blocks_mined: int             ' Blocks mined counter
+        +total_coins: float            ' Total coins created
+        +network_stats: NetworkStats   ' Network statistics
+        +mining_stats: MiningStats     ' Mining statistics
+        +network_congestion: float     ' Current network congestion
+        +block_utilization: float      ' Current block utilization
+        +use_traces: bool              ' Whether to use trace data
+        +trace_file: str               ' Trace file path
+        
+        +start()                       ' Start simulation
+        +stop()                        ' Stop simulation
+        +simulation_loop()             ' Main simulation loop
+        +should_terminate(): bool      ' Check termination conditions
+        +update_stats()                ' Update simulation statistics
+        +print_summary()               ' Print periodic summary
+        +print_final_summary()         ' Print final summary
+        +export_results(filename: str) ' Export results to file
+        +get_simulation_stats(): Dict  ' Get simulation statistics
+        +on_transaction_created(transaction: Transaction)  ' Transaction creation callback
+        +on_block_mined(block: Block)  ' Block mining callback
+        +update_network_conditions()   ' Update network conditions
+        +all_transactions_processed(): bool  ' Check if all transactions processed
+    }
+}
+
+' Relationships between components
+SimulationConfig --> BlockchainSimulator : configures
+BlockchainSimulator --> NetworkManager : manages
+BlockchainSimulator --> MiningManager : manages
+BlockchainSimulator --> WalletManager : manages
+BlockchainSimulator --> SimulationStats : tracks
+
+NetworkManager --> BlockchainNode : contains
+BlockchainNode --> Block : stores
+Block --> Transaction : contains
+
+MiningManager --> Miner : manages
+Miner --> Block : creates
+MiningManager --> Transaction : pools
+
+WalletManager --> Wallet : manages
+Wallet --> Transaction : sends/receives
+WalletManager --> FeeCalculator : uses
+
+' Data flow relationships
+Transaction --> Block : included in
+Block --> BlockchainNode : propagated to
+Block --> MiningManager : submitted to
+Transaction --> WalletManager : generated by
+
+@enduml 

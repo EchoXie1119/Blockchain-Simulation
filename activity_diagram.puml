@@ -1,0 +1,189 @@
+@startuml Blockchain Simulation Activity Diagram
+' CS595 Summer 2025 - PROJECT#2
+' Activity diagram showing the complete simulation flow
+' From initialization to termination with all required features
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam activityBackgroundColor #F0F8FF
+skinparam activityBorderColor #4682B4
+skinparam activityDiamondBackgroundColor #FFE6E6
+skinparam activityDiamondBorderColor #CC0000
+
+title Blockchain Simulation - Complete Flow
+
+|Initialization|
+start
+:Parse command-line arguments;
+:Create SimulationConfig;
+:Initialize logging system;
+:Create network topology;
+
+|Network & Mining Setup|
+:Create NetworkManager;
+:Create N BlockchainNodes;
+:Randomly connect nodes;
+:Create MiningManager;
+:Create K Miner processes;
+
+|Wallet & Transaction Setup|
+if (--wallets W > 0) then (yes)
+  :Create WalletManager;
+  :Create W wallet processes;
+  :Generate transactions upfront;
+  :Add to global unconfirmed pool;
+else (no)
+  :Skip wallet creation;
+endif
+
+|Main Simulation Loop|
+while (Simulation running?) is (yes)
+  if (Should terminate?) then (yes)
+    break
+  else (no)
+    :Attempt to mine next block;
+    
+    if (Block mined?) then (yes)
+      :Create new Block;
+      :Include up to B transactions from pool;
+      :Calculate block size;
+      :Set block timestamp;
+      :Generate block hash;
+      
+      :Submit block to MiningManager;
+      :Validate block;
+      
+      if (Block valid?) then (yes)
+        :Add to blockchain;
+        :Update mining statistics;
+        :Advance simulation time;
+        
+        :Calculate mining reward;
+        :Add reward to miner's wallet;
+        
+        if (Every 2016 blocks?) then (yes)
+          :Adjust mining difficulty;
+        else (no)
+        endif
+        
+        :Broadcast block to network;
+        :Increment io_requests counter;
+        :Add block size to network_data;
+        
+        :Process transactions in block;
+        :Update wallet balances;
+        :Remove from unconfirmed pool;
+        
+        :Update simulation statistics;
+        :Update network statistics;
+        :Update mining statistics;
+        
+        if (Print interval reached?) then (yes)
+          :Print periodic summary;
+        else (no)
+        endif
+        
+      else (no)
+        :Reject invalid block;
+        :Continue mining;
+      endif
+      
+    else (no)
+      :Advance simulation time;
+      :Update network conditions;
+    endif
+    
+    :Update network conditions;
+    :Simulate network latency;
+    :Simulate bandwidth constraints;
+    
+  endif
+endwhile (no)
+
+|Termination|
+:Stop all components;
+:Calculate final statistics;
+:Print final summary;
+
+if (Export requested?) then (yes)
+  :Export results to JSON file;
+endif
+
+stop
+
+note right
+  **Command Line Arguments:**
+  --nodes N: Create N peer nodes
+  --neighbors M: Connect each node to M distinct peers
+  --miners K: Spawn K miner processes
+  --hashrate H: Each miner has hashrate H
+  --wallets W: Generate W wallet processes
+  --transactions X: Each sends X transactions
+  --interval I: At interval I seconds
+  --blocksize B: Include up to B transactions
+  --reward R: Issue R coins per block
+  --halving H: Halve reward every H blocks
+end note
+
+note right
+  **Termination Logic:**
+  
+  If --blocks L specified:
+  - Run until L blocks mined OR
+  - All transactions processed (whichever first)
+  
+  If --blocks omitted:
+  - Run until all wallet transactions confirmed
+  
+  **For NONE workload:**
+  - Run full simulation duration (10 years)
+  - Complete all blocks regardless of transactions
+end note
+
+note right
+  [time] Sum B:blocks/totalBlocks complete% 
+  abt:avg_block_time(s) tps:confirmed_tx_per_sec 
+  infl:inflation% ETA:seconds Diff:xx Hash:xx 
+  Tx:total_tx C:coins Pool:pending_tx 
+  NMB:network_MB IO:io_requests
+end note
+
+note right
+  [******] End B:blocks abt:avg_block_time(s) 
+  tps:confirmed_tx_per_sec Tx:total_tx C:coins 
+  NMB:network_MB IO:io_requests
+end note
+
+note right
+  **Project Requirements Met:**
+  
+  ✅ Network & Blocks:
+  - Nodes (--nodes N) with stored block IDs
+  - Random neighbor connections (--neighbors M)
+  - Block structure: Header + transactions
+  - Block propagation with I/O tracking
+  
+  ✅ Mining & Difficulty:
+  - Miners (--miners K, --hashrate H)
+  - Exponential mining time
+  - Difficulty adjustment every 2016 blocks
+  - Halving & coin issuance (--reward R, --halving H)
+  
+  ✅ Transactions & Wallets:
+  - Wallets (--wallets W, --transactions X, --interval I)
+  - Block filling (--blocksize B)
+  - Termination logic as specified
+  
+  ✅ Reporting & CLI:
+  - --print P summaries with all metrics
+  - Final summary with required format
+  - Export functionality
+  
+  ✅ Workloads:
+  - NONE: No user transactions
+  - SMALL: 10 wallets, 10 transactions each, 10.0s interval
+  - MEDIUM: 1000 wallets, 1000 transactions each, 1.0s interval
+  - LARGE: 1000 wallets, 1000 transactions each, 0.01s interval
+end note
+
+@enduml 
